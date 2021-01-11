@@ -21,7 +21,8 @@ gameupdatepacket_t* utils::get_struct(ENetPacket* packet) {
             return nullptr;
         }
         return reinterpret_cast<gameupdatepacket_t*>(&tank->m_data);
-    } else
+    }
+    else
         gamepacket->m_data_size = 0;
     return gamepacket;
 }

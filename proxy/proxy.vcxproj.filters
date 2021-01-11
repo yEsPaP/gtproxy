@@ -15,60 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="proxy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sandbird\sandbird.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="http.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\callbacks.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\compress.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\host.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\list.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\packet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\peer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\protocol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\unix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\win32.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="events.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="sandbird\sandbird.h">
+    <ClInclude Include="corefunc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="http.h">
+    <ClInclude Include="userfunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilsfunc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="enet\include\callbacks.h">
@@ -98,13 +51,7 @@
     <ClInclude Include="enet\include\win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="server.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="proton\hash.hpp">
@@ -119,17 +66,43 @@
     <ClInclude Include="proton\vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gt.hpp">
+    <ClInclude Include="packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="world.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="events.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CPPBot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\callbacks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\host.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\packet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\peer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\protocol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\unix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enet\win32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

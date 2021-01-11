@@ -1,30 +1,66 @@
-#pragma once
-#include "gt.hpp"
-#include "packet.h"
-#include "server.h"
-#include "utils.h"
+// CPPBot.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-std::string gt::version = "3.57";
-std::string gt::flag = "ch";
-bool gt::resolving_uid2 = false;
-bool gt::connecting = false;
-bool gt::in_game = false;
-bool gt::ghost = false;
+#include <iostream>
+#include <fstream>
+#include <future>
+#include <thread>
+#include <chrono>
+#include "corefunc.h"
+#include "userfunc.h"
+#include "json.hpp"
+#include <string>
+#include <windows.h>
+#include <direct.h>
+#define GetCurrentDir _getcwd
 
-void gt::send_log(std::string text) {
-    g_server->send(true, "action|log\nmsg|" + text, NET_MESSAGE_GAME_MESSAGE);
+using namespace std;
+using json = nlohmann::json;
+
+vector<GrowtopiaBot> bots;
+
+inline bool exists_test(const string& name) {
+	ifstream f(name.c_str());
+	return f.good();
 }
 
-void gt::solve_captcha(std::string text) {
-    //Get the sum :D
-    utils::replace(text,
-        "set_default_color|`o\nadd_label_with_icon|big|`wAre you Human?``|left|206|\nadd_spacer|small|\nadd_textbox|What will be the sum of the following "
-        "numbers|left|\nadd_textbox|",
-        "");
-    utils::replace(text, "|left|\nadd_text_input|captcha_answer|Answer:||32|\nend_dialog|captcha_submit||Submit|", "");
-    auto number1 = text.substr(0, text.find(" +"));
-    auto number2 = text.substr(number1.length() + 3, text.length());
-    int result = atoi(number1.c_str()) + atoi(number2.c_str());
-    send_log("Solved captcha as `2" + std::to_string(result) + "``");
-    g_server->send(false, "action|dialog_return\ndialog_name|captcha_submit\ncaptcha_answer|" + std::to_string(result));
+int main() {
+	init();
+	cout << "GrowtopiaBot v1.0 [Not included QT]! by GrowtopiaNoobs and DrOreo002" << endl;
+	char cCurrentPath[FILENAME_MAX];
+
+	if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
+	{
+		return errno;
+	}
+
+	cCurrentPath[sizeof(cCurrentPath) - 1] = '\0';
+	string botDataPath = cCurrentPath + string("\\bot.json");
+
+	if (!exists_test(botDataPath)) {
+		cout << "Cannot find bot data on that path!. Stuck?, please read README.md" << endl;
+		return 0;
+	}
+	cout << "Loading bot data on path (" << botDataPath << ")" << endl;
+
+	ifstream i(botDataPath);
+	json j;
+	i >> j;
+
+	GrowtopiaBot bot = {
+		j["username"], j["password"]
+	};
+	cout << "------------------------" << endl;
+	cout << "Bot loaded!. Using username " << j["username"].get<string>() << ", With owner " + j["ownerUsername"].get<string>() << endl;
+
+	bot.gameVersion = j["gameVersion"].get<string>();
+	bot.worldName = j["targetWorld"].get<string>();
+	bot.ownerUsername = j["ownerUsername"].get<string>();
+
+	bot.userInit();
+	bots.push_back(bot);
+
+	while (true) {
+		bot.eventLoop();
+		bot.userLoop();
+	}
 }

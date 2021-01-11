@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{BC8BBDA2-3B9F-4E88-AF38-C9DDFB2701D3}</ProjectGuid>
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{BCD48403-BF4B-470C-B278-D38109CD95FC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>proxy</RootNamespace>
+    <RootNamespace>CPPBot</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -84,23 +84,22 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -114,27 +113,28 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions512</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -142,6 +142,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,24 +158,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="enet\callbacks.c" />
-    <ClCompile Include="enet\compress.c" />
-    <ClCompile Include="enet\host.c" />
-    <ClCompile Include="enet\list.c" />
-    <ClCompile Include="enet\packet.c" />
-    <ClCompile Include="enet\peer.c" />
-    <ClCompile Include="enet\protocol.c" />
-    <ClCompile Include="enet\unix.c" />
-    <ClCompile Include="enet\win32.c" />
-    <ClCompile Include="events.cpp" />
-    <ClCompile Include="gt.cpp" />
-    <ClCompile Include="http.cpp" />
-    <ClCompile Include="proxy.cpp" />
-    <ClCompile Include="sandbird\sandbird.c" />
-    <ClCompile Include="server.cpp" />
-    <ClCompile Include="utils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="corefunc.h" />
+    <ClInclude Include="packet.h" />
+    <ClInclude Include="userfunc.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="utilsfunc.h" />
     <ClInclude Include="enet\include\callbacks.h" />
     <ClInclude Include="enet\include\enet.h" />
     <ClInclude Include="enet\include\list.h" />
@@ -178,19 +172,25 @@
     <ClInclude Include="enet\include\unix.h" />
     <ClInclude Include="enet\include\utility.h" />
     <ClInclude Include="enet\include\win32.h" />
-    <ClInclude Include="events.h" />
-    <ClInclude Include="gt.hpp" />
-    <ClInclude Include="http.h" />
-    <ClInclude Include="packet.h" />
-    <ClInclude Include="player.h" />
     <ClInclude Include="proton\hash.hpp" />
     <ClInclude Include="proton\rtparam.hpp" />
     <ClInclude Include="proton\variant.hpp" />
     <ClInclude Include="proton\vector.hpp" />
     <ClInclude Include="sandbird\sandbird.h" />
-    <ClInclude Include="server.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="world.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CPPBot.cpp" />
+    <ClCompile Include="enet\callbacks.c" />
+    <ClCompile Include="enet\compress.c" />
+    <ClCompile Include="enet\host.c" />
+    <ClCompile Include="enet\list.c" />
+    <ClCompile Include="enet\packet.c" />
+    <ClCompile Include="enet\peer.c" />
+    <ClCompile Include="enet\protocol.c" />
+    <ClCompile Include="enet\unix.c" />
+    <ClCompile Include="enet\win32.c" />
+    <ClCompile Include="sandbird\sandbird.c" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
